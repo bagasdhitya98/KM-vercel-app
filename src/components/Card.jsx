@@ -1,4 +1,6 @@
-const Card = ({ id, title, image, author, date }) => {
+import { motion } from "framer-motion";
+
+const Card = ({ id, title, image, author, date, onClick }) => {
   const dateTimeList = date;
   const dateTime = new Date(dateTimeList);
 
@@ -32,7 +34,12 @@ const Card = ({ id, title, image, author, date }) => {
   const year = dateTime.getUTCFullYear();
 
   return (
-    <div id={id} className="w-full h-full rounded-md shadow-md">
+    <motion.div
+      id={id}
+      className="w-full h-full rounded-md shadow-md cursor-pointer"
+      onClick={onClick}
+      whileHover={{ scale: 1.1 }}
+    >
       <img
         src={
           image !== null && !image.includes("webp")
@@ -48,7 +55,7 @@ const Card = ({ id, title, image, author, date }) => {
         </p>
         <p className="text-black">{`${dayOfWeek} ,${day} ${monthOfYear} ${year}`}</p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

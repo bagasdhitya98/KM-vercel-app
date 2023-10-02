@@ -8,7 +8,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<News />} />
-        <Route path="/detail" element={<Detail />} />
+        <Route path="/detail/:title" element={<Detail />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Button from "../components/Button";
 import Card from "../components/Card";
 
 const News = () => {
+  const navigation = useNavigate();
   const [news, setNews] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -91,6 +93,13 @@ const News = () => {
                   author={item?.author}
                   date={item?.publishedAt}
                   image={item?.urlToImage}
+                  onClick={() =>
+                    navigation(`detail/${item?.title}`, {
+                      state: {
+                        news: item,
+                      },
+                    })
+                  }
                 />
               );
             })}
