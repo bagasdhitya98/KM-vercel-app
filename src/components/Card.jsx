@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import Button from "./Button";
 
-const Card = ({ id, title, image, author, date, onClick }) => {
+const Card = ({ id, title, image, author, date, onClick, onRead }) => {
   const dateTimeList = date;
   const dateTime = new Date(dateTimeList);
 
@@ -34,11 +35,10 @@ const Card = ({ id, title, image, author, date, onClick }) => {
   const year = dateTime.getUTCFullYear();
 
   return (
-    <motion.div
+    <div
       id={id}
       className="w-full h-full rounded-md shadow-md cursor-pointer"
       onClick={onClick}
-      whileHover={{ scale: 1.1 }}
     >
       <img
         src={
@@ -54,8 +54,11 @@ const Card = ({ id, title, image, author, date, onClick }) => {
           Author : {author !== null ? author : "author not provided"}
         </p>
         <p className="text-black">{`${dayOfWeek} ,${day} ${monthOfYear} ${year}`}</p>
+        <div className="h-10 w-40">
+          <Button label={"Add Read List"} onClick={onRead} />
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
