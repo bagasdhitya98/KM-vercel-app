@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import News from "./pages/News";
 import Detail from "./pages/Detail";
 import Login from "./pages/Login";
+import Bookmark from "./pages/Bookmark";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<News />} />
         <Route path="/auth/login" element={<Login />} />
+        <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/detail/:title" element={<Detail />} />
       </Routes>
     </BrowserRouter>

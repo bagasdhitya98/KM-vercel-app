@@ -51,7 +51,17 @@ const News = () => {
         }
       });
     } else {
-      setList((prevList) => [...prevList, item]);
+      let updatedList = [...list, item];
+      setList(updatedList);
+      Swal.fire({
+        icon: "success",
+        text: "Success Add Bookmark",
+        confirmButtonText: "OK",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          localStorage.setItem("list", JSON.stringify(updatedList));
+        }
+      });
     }
   };
 

@@ -8,6 +8,10 @@ const Navbar = ({ list, onClick }) => {
   const navigate = useNavigate();
   const username = Cookies.get("email");
 
+  const handleBookmark = () => {
+    navigate("/bookmark");
+  };
+
   const handleLogout = () => {
     Swal.fire({
       text: "Are you sure want to log out?",
@@ -28,7 +32,7 @@ const Navbar = ({ list, onClick }) => {
         <ul className="flex items-center gap-x-5 text-white font-semibold">
           <li
             className="cursor-pointer hover:bg-white hover:text-orange-500 rounded-md"
-            onClick={onClick}
+            onClick={() => handleBookmark()}
           >
             Read List
           </li>
