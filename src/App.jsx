@@ -5,6 +5,7 @@ import Detail from "./pages/Detail";
 import Login from "./pages/Login";
 import Bookmark from "./pages/Bookmark";
 import Product from "./pages/Product";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/ecommerce/product" element={<Product />} />
         <Route path="/detail/:title" element={<Detail />} />
+        <Route path="/ecommerce/checkout" element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );

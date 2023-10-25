@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cartSlice";
+
 import Button from "../components/Button";
 import axios from "axios";
 
 const Product = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [product, setProduct] = useState([]);
   const [search, setSearch] = useState("");
 
   const getAllProduct = () => {
     axios
-      .get("https://651fc507906e276284c37a02.mockapi.io/product")
+      .get("https://fakestoreapi.com/products")
       .then((response) => {
         setProduct(response?.data);
       })
@@ -23,6 +29,18 @@ const Product = () => {
       item?.product_name?.toLowerCase().includes(search.toLowerCase())
     );
     setProduct(filteredProduct);
+  };
+
+  const handleAddToCart = (item) => {
+    const newItem = {
+      id: item?.id,
+      title: item?.title,
+      image: item?.image,
+      description: item?.description,
+      price: item?.price,
+    };
+    dispatch(addItem(newItem));
+    navigate("/ecommerce/checkout");
   };
 
   useEffect(() => {
@@ -55,9 +73,17 @@ const Product = () => {
             product?.map((item) => {
               return (
                 <div className="w-96 h-full flex flex-col gap-y-5 rounded-md shadow-md p-4">
-                  <p className="font-semibold">{item?.product_name}</p>
-                  <p>{item?.product_description}</p>
+                  <img src={item?.image} className="h-40 w-max mx-auto" />
+                  <p className="font-semibold">{item?.title}</p>
+                  <p>{item?.description}</p>
                   <p className="font-semibold">Price : {item?.price}</p>
+                  <div className="h-10">
+                    <Button
+                      id="add-to-cart"
+                      onClick={() => handleAddToCart(item)}
+                      label={"Add To Cart"}
+                    />
+                  </div>
                 </div>
               );
             })}
